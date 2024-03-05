@@ -21,7 +21,7 @@ const client = new MongoClient(process.env.MONGO_URI, {
   }
 });
 
-async function connectBookData() {
+async function getBookData() {
   try {
     await client.connect();
     const result = await client.db("jacobs-quebec").collection("quebec-books").find().toArray();
@@ -38,11 +38,10 @@ async function connectBookData() {
 
   }
 }
-// run().catch(console.dir);
 
 
 //Info from Database
-app.get('/', async (req,res) => {
+app.get('/', async (req, res) => {
 
   let result = await getBookData();
 
