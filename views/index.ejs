@@ -42,7 +42,7 @@
     <div class="row">
         <div class="card col-md-4 ">
             <h3></h3>
-            <p>Who's suggested this book: <%= bookData[i].name %></p>
+            <p>Who suggested this book: <%= bookData[i].name %></p>
 
             <p>Book Title: <%= bookData[i].bookTitle %></p>
 
@@ -83,17 +83,20 @@
                 <h2>New Book Suggestion</h2>
                 <form method="POST" action="/addBookSuggestion">
                     <label for="name">Book Suggester: </lable>
+                        <br>
                     <input name="name" placeholder="Enter Name">
                     <br>
                     <label for="bookTitle">Title of Book: </label>
+                    <br>
                     <input name="bookTitle" placeholder="Enter title of the book">
                     <br>
                     <label for="bookAuthor">Author of the Book: </label>
+                    <br>
                     <input name="bookAuthor" placeholder="Enter the Book's Author">
                     <br>
                     <label for="rating">Give a brief statement or two about the book: </label>
                     <br>
-                    <textarea id="rating" name="rating" placeholder="Enter your rating..." rows="4" cols="50">
+                    <textarea id="rating" name="rating" placeholder="Enter your rating..." rows="4" cols="50"></textarea>
                 </form>
             </div>
         </div>

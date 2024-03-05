@@ -22,14 +22,14 @@ body {
 
 h1 {
     text-align: center;
-    color: black;
+    color: rgb(206, 203, 203);
     font-weight: bold; 
     position: relative;
     top: 25%; 
 }
 
 h3 {
-    color: black;
+    color: rgb(206, 203, 203);
     display: inline-block;
     border: none;
     outline: none;
