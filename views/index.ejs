@@ -1,0 +1,117 @@
+
+<%- include('partials/html-head.ejs') %>
+<link rel="stylesheet" href="/styles/styles.css">
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container-fluid">
+       <a class="navbar-brand"><%= pageTitle %></a>
+         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+         <span class="navbar-toggler-icon"></span>
+         </button>
+     <div class="collapse navbar-collapse" id="collapsibleNavbar">
+       <ul class="navbar-nav">
+         <li>
+            <a class="nav-link" target="_blank" href="https://gist.github.com/barrycumbie/978e0a8f517669733f61d44008e6924c">Quebec Story Card</a>
+         </li>
+         <li class="nav-item">
+            <a class="nav-link" target="_blank" href="https://github.com/Rastifer/urban-engine-quebec">Source Code</a>
+         </li>
+         <li>
+            <a class="nav-link" target="_blank" href="https://github.com/Rastifer">About Me</a>
+         </li>
+       </ul>
+     </div>
+     </div>
+   </nav>
+
+   <div class="row">
+    
+    <div id="titleBar" class="offset-md-3 col-md-8 mx-auto text-center">
+
+        <h1>Jacob's Book List</h1>
+        <h3>Help me find some new books to read</h3>
+    </div>
+</div>
+
+
+<!-- first card  -->
+
+<% for (var i=0; i< bookData.length; i++ ) { %>
+    <hr>
+    
+    <div class="row">
+        <div class="card col-md-4 ">
+            <h3></h3>
+            <p>Who's suggested this book: <%= bookData[i].name %></p>
+
+            <p>Book Title: <%= bookData[i].bookTitle %></p>
+
+            <p>Book Author: <%= bookData[i].bookAuthor %></p>
+
+            <p>Your Rating: <%= bookData[i].rating %></p>
+
+        </div>
+
+    <br>
+    
+        <div class="card col-md-4">
+            <h3>Update your Book Suggestion</h3>
+
+                <%= console.log(bookData) %>
+
+                    <form method="POST">
+                        <input type="hidden" id="id" name="id" value="<%= bookData[i]._id %>"></input>
+                        <label for="name"> Book Suggester:</label>
+                        <input type="text" id="name" name="name" value="<%= bookData[i].name %>"></input>
+                        <br><br>
+                        <label for="bookTitle">Book Title: </label>
+                        <input type="text" id="bookTitle" name="bookTitle"value="<%= bookData[i].bookTitle %>">
+                        <br><br>
+                        
+                        <button class="btn btn-primary" type="submit" formaction="/updateBookData">Update Book Title</button>
+                        <button class="btn btn-danger" type="submit" formaction="/deleteBookData">Delete Book Title</button>
+                    </form>
+                    <br>
+        </div>
+
+    </div>
+    <% } %>
+    <br>
+
+        <div class="row">
+            <div class="card col-md-4">
+                <h2>New Book Suggestion</h2>
+                <form method="POST" action="/addBookSuggestion">
+                    <label for="name">Book Suggester: </lable>
+                    <input name="name" placeholder="Enter Name">
+                    <br>
+                    <label for="bookTitle">Title of Book: </label>
+                    <input name="bookTitle" placeholder="Enter title of the book">
+                    <br>
+                    <label for="bookAuthor">Author of the Book: </label>
+                    <input name="bookAuthor" placeholder="Enter the Book's Author">
+                    <br>
+                    <label for="rating">Give a brief statement or two about the book: </label>
+                    <br>
+                    <textarea id="rating" name="rating" placeholder="Enter your rating..." rows="4" cols="50">
+                </form>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+<footer> 
+
+    <a href="/send">send</a> |
+
+    <a href="https://github.com/Rastifer/urban-engine-quebec" target="_blank">Source Code</a>
+
+</footer>
+
+<%- include('partials/html-end.ejs') %>
