@@ -4,12 +4,12 @@ This is Jacob's Bookcase!
 This application is an easy way to tell the coolest guy you know (me) which books I need to read.
 
 Technology used:
-node.js
-express.js
-MongoDB
-ejs
-dotenv
-Nodemon
+node.js;
+express.js;
+MongoDB;
+ejs;
+dotenv;
+Nodemon;
 
 Setup:
 Created a Repo on GitHub
