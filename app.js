@@ -74,8 +74,6 @@ app.post('/addBookSuggestion', async (req, res) => {
   finally {
 
   }
-
-  }
   
 });
 
