@@ -1,9 +1,11 @@
 require('dotenv').config()
-const express = require('express');
-const app = express();
-const port = process.env.PORT || 5500;
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const express = require('express')
+const app = express()
 const bodyParser = require('body-parser')
+const { ObjectId } = require('mongodb')
+const port = process.env.PORT || 5500
+const { MongoClient, ServerApiVersion } = require('mongodb');
+
 
 // set the view engine to ejs
 let path = require('path');
@@ -21,7 +23,7 @@ const client = new MongoClient(process.env.MONGO_URI, {
   }
 });
 
-async function getBookData() {
+async function connectBookData() {
   try {
     await client.connect();
     const result = await client.db("jacobs-quebec").collection("quebec-books").find().toArray();
@@ -43,7 +45,7 @@ async function getBookData() {
 //Info from Database
 app.get('/', async (req, res) => {
 
-  let result = await getBookData();
+  let result = await connectBookData();
 
   console.log("myResults: ", result);
 
@@ -65,12 +67,13 @@ app.post('/addBookSuggestion', async (req, res) => {
     console.log(req.body);
 
     await collection.insertOne(req.body);
+
     res.redirect('/');
   }
-  catch(err) {
+  catch(err){
     console.log(err);
   }
-  finally {
+  finally{
 
   }
   
@@ -79,7 +82,7 @@ app.post('/addBookSuggestion', async (req, res) => {
 //Update Book Suggestion
 app.post('/updateBookSuggestion', async (req, res) => {
   try {
-    console.log("Book Title: ", req.body);
+    console.log("body: ", req.body);
 
     client.connect;
     const collection = client.db("jacobs-quebec").collection("quebec-books");
