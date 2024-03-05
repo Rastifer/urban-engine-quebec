@@ -29,19 +29,48 @@
     <div id="titleBar" class="offset-md-3 col-md-8 mx-auto text-center">
 
         <h1>Jacob's Book List</h1>
-        <h3>Help me find some new books to read</h3>
+        <h2>Help me find some new books to read</h2>
     </div>
 </div>
 
 
 <!-- first card  -->
 
+<div class="row justify-content-center">
+    <div class="card col-md-6 mx-auto">
+        <h3>New Book Suggestion</h3>
+        <form method="POST" action="/addBookSuggestion">
+            <label for="name">Book Suggester: </lable>
+                <br>
+            <input name="name" placeholder="Enter Name">
+            <br>
+            <label for="bookTitle">Title of Book: </label>
+            <br>
+            <input name="bookTitle" placeholder="Enter title of the book">
+            <br>
+            <label for="bookAuthor">Author of the Book: </label>
+            <br>
+            <input name="bookAuthor" placeholder="Enter the Book's Author">
+            <br>
+            <label for="rating">Give a brief statement or two about the book: </label>
+            <br>
+            <textarea id="rating" name="rating" placeholder="Enter your rating..." rows="4" cols="50"></textarea>
+            <br>
+            <button class="btn btn-primary" type="submit">Add Your Suggestion!</button>
+        </form>
+    </div>
+</div>
+
+
+
+
+
 <% for (var i=0; i< bookData.length; i++ ) { %>
     <hr>
     
-    <div class="row">
-        <div class="card col-md-4 ">
-            <h3></h3>
+    <div class="row justify-content-center">
+        <div class="card col-md-4 ml-auto ">
+            <h3>Thanks for the Suggestion!</h3>
             <p>Who suggested this book: <%= bookData[i].name %></p>
 
             <p>Book Title: <%= bookData[i].bookTitle %></p>
@@ -67,9 +96,12 @@
                         <label for="bookTitle">Book Title: </label>
                         <input type="text" id="bookTitle" name="bookTitle"value="<%= bookData[i].bookTitle %>">
                         <br><br>
-                        
-                        <button class="btn btn-primary" type="submit" formaction="/updateBookData">Update Book Title</button>
-                        <button class="btn btn-danger" type="submit" formaction="/deleteBookData">Delete Book Title</button>
+                        <label for="rating">Your Rating: </label>
+                        <br><br>
+                        <textarea id="rating" name="rating" value="<%= bookData[i].rating %>" rows="5" cols="30"></textarea>
+                        <br><br>
+                        <button class="btn btn-success" type="submit" formaction="/updateBookSuggestion">Update Book Title</button>
+                        <button class="btn btn-warning" type="submit" formaction="/deleteBookSuggestion">Delete Book Title</button>
                     </form>
                     <br>
         </div>
@@ -78,31 +110,7 @@
     <% } %>
     <br>
 
-        <div class="row">
-            <div class="card col-md-4">
-                <h2>New Book Suggestion</h2>
-                <form method="POST" action="/addBookSuggestion">
-                    <label for="name">Book Suggester: </lable>
-                        <br>
-                    <input name="name" placeholder="Enter Name">
-                    <br>
-                    <label for="bookTitle">Title of Book: </label>
-                    <br>
-                    <input name="bookTitle" placeholder="Enter title of the book">
-                    <br>
-                    <label for="bookAuthor">Author of the Book: </label>
-                    <br>
-                    <input name="bookAuthor" placeholder="Enter the Book's Author">
-                    <br>
-                    <label for="rating">Give a brief statement or two about the book: </label>
-                    <br>
-                    <textarea id="rating" name="rating" placeholder="Enter your rating..." rows="4" cols="50"></textarea>
-                </form>
-            </div>
-        </div>
-
-
-
+    
 
 
 
@@ -110,7 +118,6 @@
 
 
 <footer> 
-
     <a href="/send">send</a> |
 
     <a href="https://github.com/Rastifer/urban-engine-quebec" target="_blank">Source Code</a>
