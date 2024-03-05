@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 5500;
-const { ObjectId } = require('mongodb');
+const { MongoClient, ServerApiVersion } = require('mongodb');
 const bodyParser = require('body-parser')
 
 // set the view engine to ejs
@@ -11,8 +11,6 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }))
-
-// let myTypeServer = "Type 2: The Giver ";
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(process.env.MONGO_URI, {
@@ -25,17 +23,11 @@ const client = new MongoClient(process.env.MONGO_URI, {
 
 async function connectBookData() {
   try {
-    // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
-    // Send a ping to confirm a successful connection
-    // await client.db("admin").command({ ping: 1 });
     const result = await client.db("jacobs-quebec").collection("quebec-books").find().toArray();
-    console.log("quebec-books result:", result);
+    console.log("mongo call await inside f/n:", result);
 
     
-
-    // await client.db("admin").command({ping: 1});
-    // console.log("Pinged your deployment. You successfully connected to MongoDB!");
 
     return result;
   } 
@@ -52,19 +44,20 @@ async function connectBookData() {
 //Info from Database
 app.get('/', async (req,res) => {
 
-  let result = await connectBookData();
+  let result = await getBookData();
 
-  console.log("myResults", result);
+  console.log("myResults: ", result);
 
   res.render('index', {
     pageTitle: "Jacob's Book Database",
-    books: result
+    bookData: result
+
   });
 
 });
 
 
-app.post('/addBookSuggestion', function (req, res) {
+app.post('/addBookSuggestion', async (req, res) => {
 
   try {
     client.connect;
@@ -79,6 +72,8 @@ app.post('/addBookSuggestion', function (req, res) {
     console.log(err);
   }
   finally {
+
+  }
 
   }
   
